@@ -4,12 +4,10 @@ import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.*;
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -32,7 +30,6 @@ public class RobotContainer {
     // Joysticks
     private final XboxController xboxController1 = new XboxController(1);
     private final XboxController xboxController0 = new XboxController(0);
-
 
     // A chooser for autonomous commands
     SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -59,9 +56,7 @@ public class RobotContainer {
         m_chassis.setDefaultCommand(new ChassisDriveCommand(m_chassis, xboxController0));
 
         // Configure autonomous sendable chooser
-
         m_chooser.setDefaultOption("Autonomous Command", new AutonomousCommand());
-
         SmartDashboard.putData("Auto Mode", m_chooser);
     }
 

@@ -26,6 +26,9 @@ public class ChassisDriveCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        double speed = xboxController.getLeftY();
+        double rotation = xboxController.getLeftX();
+        m_chassis.arcadeDrive(speed, rotation);
     }
 
     // Called once the command ends or is interrupted.

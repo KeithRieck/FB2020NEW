@@ -1,7 +1,5 @@
 package frc.robot.subsystems;
 
-import frc.robot.commands.*;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -13,7 +11,6 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  */
 public class Storage extends SubsystemBase {
     private CANSparkMax storageMotor;
-
 
     /**
      *
@@ -34,7 +31,6 @@ public class Storage extends SubsystemBase {
     @Override
     public void simulationPeriodic() {
         // This method will be called once per scheduler run when in simulation
-
     }
 
     // Put methods for controlling this subsystem

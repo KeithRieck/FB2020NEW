@@ -1,12 +1,7 @@
 package frc.robot.subsystems;
 
-import frc.robot.commands.*;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
@@ -34,7 +29,6 @@ public class Loader extends SubsystemBase {
         leftBeltMotor.configNominalOutputReverse(0, 30);
         leftBeltMotor.configPeakOutputForward(1, 30);
         leftBeltMotor.configPeakOutputReverse(-1, 30);
-
 
         rightBeltMotor = new WPI_TalonSRX(21);
 
