@@ -7,6 +7,8 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import static frc.robot.Constants.*;
+
 /**
  *
  */
@@ -25,6 +27,10 @@ public class Acquisition extends SubsystemBase {
 
         spinMotor.setInverted(false);
         spinMotor.setNeutralMode(NeutralMode.Coast);
+        spinMotor.configPeakCurrentLimit(TALON_PEAK_CURRENT_LIMIT, TALON_TIMEOUT);
+        spinMotor.configPeakCurrentDuration(TALON_PEAK_CURRENT_DURATION, TALON_TIMEOUT);
+        spinMotor.configContinuousCurrentLimit(TALON_CONTINUOUS_CURRENT_LIMIT, TALON_TIMEOUT);
+        spinMotor.enableCurrentLimit(TALON_PEAK_CURRENT_LIMIT > 0);
 
         /* Set the peak and nominal outputs */
         spinMotor.configNominalOutputForward(0, 30);

@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import static frc.robot.Constants.*;
+
 /**
  *
  */
@@ -30,6 +32,11 @@ public class Loader extends SubsystemBase {
         leftBeltMotor.configPeakOutputForward(1, 30);
         leftBeltMotor.configPeakOutputReverse(-1, 30);
 
+        leftBeltMotor.configPeakCurrentLimit(TALON_PEAK_CURRENT_LIMIT, TALON_TIMEOUT);
+        leftBeltMotor.configPeakCurrentDuration(TALON_PEAK_CURRENT_DURATION, TALON_TIMEOUT);
+        leftBeltMotor.configContinuousCurrentLimit(TALON_CONTINUOUS_CURRENT_LIMIT, TALON_TIMEOUT);
+        leftBeltMotor.enableCurrentLimit(TALON_PEAK_CURRENT_LIMIT > 0);
+
         rightBeltMotor = new WPI_TalonSRX(21);
 
         /* Factory default hardware to prevent unexpected behavior */
@@ -44,6 +51,11 @@ public class Loader extends SubsystemBase {
         rightBeltMotor.configNominalOutputReverse(0, 30);
         rightBeltMotor.configPeakOutputForward(1, 30);
         rightBeltMotor.configPeakOutputReverse(-1, 30);
+
+        rightBeltMotor.configPeakCurrentLimit(TALON_PEAK_CURRENT_LIMIT, TALON_TIMEOUT);
+        rightBeltMotor.configPeakCurrentDuration(TALON_PEAK_CURRENT_DURATION, TALON_TIMEOUT);
+        rightBeltMotor.configContinuousCurrentLimit(TALON_CONTINUOUS_CURRENT_LIMIT, TALON_TIMEOUT);
+        rightBeltMotor.enableCurrentLimit(TALON_PEAK_CURRENT_LIMIT > 0);
     }
 
     @Override

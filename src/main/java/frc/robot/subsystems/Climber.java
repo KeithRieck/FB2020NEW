@@ -5,6 +5,8 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import static frc.robot.Constants.*;
+
 /**
  *
  */
@@ -21,12 +23,13 @@ public class Climber extends SubsystemBase {
         leftClimberMotor.restoreFactoryDefaults();
         leftClimberMotor.setInverted(false);
         leftClimberMotor.setIdleMode(IdleMode.kBrake);
-
+        leftClimberMotor.setSmartCurrentLimit(SPARKMAX_LOWER_STALL_LIMIT, SPARKMAX_LOWER_FREE_LIMIT, SPARKMAX_LOWER_LIMIT_RPM);
 
         rightClimberMotor = new CANSparkMax(24, MotorType.kBrushless);
         rightClimberMotor.restoreFactoryDefaults();
         rightClimberMotor.setInverted(false);
         rightClimberMotor.setIdleMode(IdleMode.kBrake);
+        rightClimberMotor.setSmartCurrentLimit(SPARKMAX_LOWER_STALL_LIMIT, SPARKMAX_LOWER_FREE_LIMIT, SPARKMAX_LOWER_LIMIT_RPM);
     }
 
     @Override

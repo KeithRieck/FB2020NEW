@@ -36,23 +36,22 @@ public final class Config {
      * @param outStream Outputstream, such as {@code System.out}.
      */
     public static void printPreferences(PrintStream outStream) {
-        final Preferences config = Preferences.getInstance();
         final NetworkTable networkTable = NetworkTableInstance.getDefault().getTable("Preferences");
-        SortedSet<String> sortedKeys = new TreeSet<String>(config.getKeys());
+        SortedSet<String> sortedKeys = new TreeSet<String>(Preferences.getKeys());
         for (String key : sortedKeys) {
             try {
                 switch (networkTable.getEntry(key).getType()) {
-                case kBoolean:
-                    outStream.printf("%s=%b%n", key, config.getBoolean(key, false));
-                    break;
-                case kDouble:
-                    outStream.printf("%s=%f%n", key, config.getDouble(key, 0.0));
-                    break;
-                case kString:
-                    outStream.printf("%s=%f%n", key, config.getString(key, null));
-                    break;
-                default:
-                    outStream.printf("%s=%s%n", key, config.getString(key, "UNKNOWN"));
+                    case kBoolean:
+                        outStream.printf("%s=%b%n", key, Preferences.getBoolean(key, false));
+                        break;
+                    case kDouble:
+                        outStream.printf("%s=%f%n", key, Preferences.getDouble(key, 0.0));
+                        break;
+                    case kString:
+                        outStream.printf("%s=%f%n", key, Preferences.getString(key, null));
+                        break;
+                    default:
+                        outStream.printf("%s=%s%n", key, Preferences.getString(key, "UNKNOWN"));
                 }
             } catch (Exception e) {
                 System.out.println("ERROR: Config problem for property: " + key);
@@ -67,10 +66,9 @@ public final class Config {
      * clean slate.
      */
     public static void cleanAllPreferences() {
-        final Preferences config = Preferences.getInstance();
-        SortedSet<String> sortedKeys = new TreeSet<String>(config.getKeys());
+        SortedSet<String> sortedKeys = new TreeSet<String>(Preferences.getKeys());
         for (String key : sortedKeys) {
-            config.remove(key);
+            Preferences.remove(key);
         }
     }
 
@@ -82,7 +80,6 @@ public final class Config {
      * @param fileNames File names or resource names.
      */
     public static void loadConfiguration(String... fileNames) {
-        final Preferences config = Preferences.getInstance();
         for (String fileName : fileNames) {
             try {
                 InputStream inStream = openStream(fileName);
@@ -91,19 +88,19 @@ public final class Config {
                     String key = entry.getKey().toString().trim();
                     String value = entry.getValue().toString();
                     if (value.length() == 0) {
-                        config.remove(key);
+                        Preferences.remove(key);
                     } else if (value.matches(BOOLEAN)) {
-                        config.putBoolean(key, Boolean.parseBoolean(value));
+                        Preferences.setBoolean(key, Boolean.parseBoolean(value));
                     } else if (value.matches(INTEGER)) {
-                        config.putInt(key, Integer.parseInt(value));
+                        Preferences.setInt(key, Integer.parseInt(value));
                     } else if (value.matches(LONG)) {
-                        config.putLong(key, Long.parseLong(value));
+                        Preferences.setLong(key, Long.parseLong(value));
                     } else if (value.matches(FLOAT)) {
-                        config.putFloat(key, Float.parseFloat(value));
+                        Preferences.setFloat(key, Float.parseFloat(value));
                     } else if (value.matches(DOUBLE)) {
-                        config.putDouble(key, Double.parseDouble(value));
+                        Preferences.setDouble(key, Double.parseDouble(value));
                     } else {
-                        config.putString(key, value);
+                        Preferences.setString(key, value);
                     }
                 }
             } catch (IOException iox) {

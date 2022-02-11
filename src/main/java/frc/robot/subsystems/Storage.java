@@ -6,6 +6,8 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import static frc.robot.Constants.*;
+
 /**
  *
  */
@@ -20,6 +22,7 @@ public class Storage extends SubsystemBase {
         storageMotor.restoreFactoryDefaults();
         storageMotor.setInverted(false);
         storageMotor.setIdleMode(IdleMode.kBrake);
+        storageMotor.setSmartCurrentLimit(SPARKMAX_LOWER_STALL_LIMIT, SPARKMAX_LOWER_FREE_LIMIT, SPARKMAX_LOWER_LIMIT_RPM);
     }
 
     @Override

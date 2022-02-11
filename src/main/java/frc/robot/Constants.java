@@ -17,9 +17,16 @@ import static frc.robot.util.Config.printPreferences;
  */
 public class Constants {
 
-    public static boolean DEBUG = false;
-    public static int SPARKMAX_CURRENT_LIMIT = 4;
-    public static int TALON_CURRENT_LIMIT = 4;
+    public static boolean DEBUG;
+
+    public static int SPARKMAX_LOWER_STALL_LIMIT;
+    public static int SPARKMAX_LOWER_FREE_LIMIT;
+    public static int SPARKMAX_LOWER_LIMIT_RPM;
+
+    public static final int TALON_TIMEOUT = 30;
+    public static int TALON_PEAK_CURRENT_LIMIT;
+    public static int TALON_PEAK_CURRENT_DURATION;
+    public static int TALON_CONTINUOUS_CURRENT_LIMIT;
 
     public static void init(String... fileNames) {
         cleanAllPreferences();
@@ -27,7 +34,13 @@ public class Constants {
         printPreferences(System.out);
 
         DEBUG = Preferences.getBoolean("debug", false);
-        SPARKMAX_CURRENT_LIMIT = Preferences.getInt("sparkmax.currentLimit", 4);
-        TALON_CURRENT_LIMIT = Preferences.getInt("talon.currentLimit", 4);
+
+        SPARKMAX_LOWER_STALL_LIMIT = Preferences.getInt("SPARKMAX_LOWER_STALL_LIMIT", 20);
+        SPARKMAX_LOWER_FREE_LIMIT = Preferences.getInt("SPARKMAX_LOWER_FREE_LIMIT", 10);
+        SPARKMAX_LOWER_LIMIT_RPM = Preferences.getInt("SPARKMAX_LOWER_LIMIT_RPM", 500);
+
+        TALON_PEAK_CURRENT_LIMIT = Preferences.getInt("TALON_PEAK_CURRENT_LIMIT", 30);
+        TALON_PEAK_CURRENT_DURATION = Preferences.getInt("TALON_PEAK_CURRENT_DURATION", 100);
+        TALON_CONTINUOUS_CURRENT_LIMIT = Preferences.getInt("TALON_CONTINUOUS_CURRENT_LIMIT", 20);
     }
 }

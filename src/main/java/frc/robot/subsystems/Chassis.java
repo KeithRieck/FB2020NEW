@@ -9,6 +9,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
+import static frc.robot.Constants.*;
+
 /**
  *
  */
@@ -31,11 +33,13 @@ public class Chassis extends SubsystemBase {
         leftFrontMotor.restoreFactoryDefaults();
         leftFrontMotor.setInverted(true);
         leftFrontMotor.setIdleMode(IdleMode.kBrake);
+        leftFrontMotor.setSmartCurrentLimit(SPARKMAX_LOWER_STALL_LIMIT, SPARKMAX_LOWER_FREE_LIMIT, SPARKMAX_LOWER_LIMIT_RPM);
 
         leftRearMotor = new CANSparkMax(3, MotorType.kBrushless);
         leftRearMotor.restoreFactoryDefaults();
         leftRearMotor.setInverted(true);
         leftRearMotor.setIdleMode(IdleMode.kBrake);
+        leftRearMotor.setSmartCurrentLimit(SPARKMAX_LOWER_STALL_LIMIT, SPARKMAX_LOWER_FREE_LIMIT, SPARKMAX_LOWER_LIMIT_RPM);
 
         leftMotors = new MotorControllerGroup(leftFrontMotor, leftRearMotor);
         addChild("leftMotors", leftMotors);
@@ -44,11 +48,13 @@ public class Chassis extends SubsystemBase {
         rightFrontMotor.restoreFactoryDefaults();
         rightFrontMotor.setInverted(false);
         rightFrontMotor.setIdleMode(IdleMode.kBrake);
+        rightFrontMotor.setSmartCurrentLimit(SPARKMAX_LOWER_STALL_LIMIT, SPARKMAX_LOWER_FREE_LIMIT, SPARKMAX_LOWER_LIMIT_RPM);
 
         rightRearMotor = new CANSparkMax(5, MotorType.kBrushless);
         rightRearMotor.restoreFactoryDefaults();
         rightRearMotor.setInverted(false);
         rightRearMotor.setIdleMode(IdleMode.kBrake);
+        rightRearMotor.setSmartCurrentLimit(SPARKMAX_LOWER_STALL_LIMIT, SPARKMAX_LOWER_FREE_LIMIT, SPARKMAX_LOWER_LIMIT_RPM);
 
         rightMotors = new MotorControllerGroup(rightFrontMotor, rightRearMotor);
         addChild("rightMotors", rightMotors);

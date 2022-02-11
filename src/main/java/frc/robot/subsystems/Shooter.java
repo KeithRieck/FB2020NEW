@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import static frc.robot.Constants.*;
 
 /**
  *
@@ -29,6 +30,11 @@ public class Shooter extends SubsystemBase {
         shooterMotor.configNominalOutputReverse(0, 30);
         shooterMotor.configPeakOutputForward(1, 30);
         shooterMotor.configPeakOutputReverse(-1, 30);
+
+        shooterMotor.configPeakCurrentLimit(TALON_PEAK_CURRENT_LIMIT, TALON_TIMEOUT);
+        shooterMotor.configPeakCurrentDuration(TALON_PEAK_CURRENT_DURATION, TALON_TIMEOUT);
+        shooterMotor.configContinuousCurrentLimit(TALON_CONTINUOUS_CURRENT_LIMIT, TALON_TIMEOUT);
+        shooterMotor.enableCurrentLimit(TALON_PEAK_CURRENT_LIMIT > 0);
     }
 
     @Override
