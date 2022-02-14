@@ -17,6 +17,15 @@ import static frc.robot.util.Config.printPreferences;
  */
 public class Constants {
 
+    public static final int CHASSIS_LEFT_FRONT_MOTOR_CAN_ID = 2;
+    public static final int CHASSIS_LEFT_REAR_MOTOR_CAN_ID = 3;
+    public static final int CHASSIS_RIGHT_FRONT_MOTOR_CAN_ID = 4;
+    public static final int CHASSIS_RIGHT_REAR_MOTOR_CAN_ID = 5;
+    public static double CHASSIS_PID_P = 1.0;
+    public static double CHASSIS_PID_I = 0.0;
+    public static double CHASSIS_PID_D = 0.0;
+    public static boolean CHASSIS_CLOSED_LOOP = false;
+
     public static boolean DEBUG;
 
     public static int SPARKMAX_LOWER_STALL_LIMIT;
@@ -33,7 +42,8 @@ public class Constants {
         loadConfiguration(fileNames);
         printPreferences(System.out);
 
-        DEBUG = Preferences.getBoolean("debug", false);
+        DEBUG = Preferences.getBoolean("DEBUG", false);
+        CHASSIS_CLOSED_LOOP = Preferences.getBoolean("CHASSIS_CLOSED_LOOP", false);
 
         SPARKMAX_LOWER_STALL_LIMIT = Preferences.getInt("SPARKMAX_LOWER_STALL_LIMIT", 20);
         SPARKMAX_LOWER_FREE_LIMIT = Preferences.getInt("SPARKMAX_LOWER_FREE_LIMIT", 10);
@@ -42,5 +52,9 @@ public class Constants {
         TALON_PEAK_CURRENT_LIMIT = Preferences.getInt("TALON_PEAK_CURRENT_LIMIT", 30);
         TALON_PEAK_CURRENT_DURATION = Preferences.getInt("TALON_PEAK_CURRENT_DURATION", 100);
         TALON_CONTINUOUS_CURRENT_LIMIT = Preferences.getInt("TALON_CONTINUOUS_CURRENT_LIMIT", 20);
+
+        CHASSIS_PID_P = Preferences.getDouble("CHASSIS_PID_P", 1.0);
+        CHASSIS_PID_I = Preferences.getDouble("CHASSIS_PID_I", 0.0);
+        CHASSIS_PID_D = Preferences.getDouble("CHASSIS_PID_D", 0.0);
     }
 }
